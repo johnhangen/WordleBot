@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from textReader import TextReader, wordsToList
-from const import letter_values
+from src.textReader import TextReader, wordsToList
+from src.const import letter_values
 
 
 def sort_value(word: str) -> int:
@@ -46,16 +46,3 @@ class WordlePos:
         """Returns the filtered list of words."""
         self.words.sort(key=sort_value, reverse=True)
         return self.words
-
-def main():
-    reader = TextReader(path='data/words.txt')
-    with reader.read() as lines:
-       words = wordsToList(lines)
-    
-    WP = WordlePos(words)
-    WP.find_words()
-    words = WP.get_words()
-    print(words)
-
-if __name__ == '__main__':
-    main()
