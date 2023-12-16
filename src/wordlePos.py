@@ -12,15 +12,15 @@ def sort_value(word: str) -> int:
 
 class WordlePos:
     def __init__(self, words: list[str]) -> None:
-        self.real_letters = ['_', '_', 'o', '_', 'e']
+        self.real_letters = ['_', '_', '_', '_', '_']
         self.not_pos = {
             0: [],  
             1: [],     
             2: [],
-            3: ['l'],
+            3: [],
             4: []
         }
-        self.not_letters = ['a', 'r', 'n', 'c', 't', 'i', 's', 'w', 'h']
+        self.not_letters = []
         self.words = words
 
     def update_real_letters(self, letters: str) -> None:
