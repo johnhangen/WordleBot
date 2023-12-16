@@ -23,6 +23,18 @@ class WordlePos:
         self.not_letters = ['a', 'r', 'n', 'c', 't', 'i', 's', 'w', 'h']
         self.words = words
 
+    def update_real_letters(self, letters: str) -> None:
+        """Updates the correct letters."""
+        self.real_letters = list(letters)
+
+    def update_not_pos(self, letters: str, positions: list[int]) -> None:
+        """Updates the misplaced letters and their positions."""
+        self.not_pos = {pos: list(letters) for pos in positions}
+    
+    def update_not_letters(self, letters: str) -> None:
+        """Updates the absent letters."""
+        self.not_letters = list(letters)
+
     def find_words(self) -> None:
         """Filters words based on the set criteria."""
         self.words = [word for word in self.words if self.is_valid_word(word)]
