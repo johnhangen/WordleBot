@@ -1,13 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from src.textReader import TextReader, wordsToList
 from src.const import letter_values
-
-
-def sort_value(word: str) -> int:
-    return sum(letter_values.get(letter, 0) for letter in set(word.lower()))
-
 
 
 class WordlePos:
@@ -56,5 +50,9 @@ class WordlePos:
 
     def get_words(self) -> list[str]:
         """Returns the filtered list of words."""
-        self.words.sort(key=sort_value, reverse=True)
+        self.words.sort(key=self.sort_value, reverse=True)
         return self.words
+    
+    @staticmethod
+    def sort_value(word: str) -> int:
+        return sum(letter_values.get(letter, 0) for letter in set(word.lower()))

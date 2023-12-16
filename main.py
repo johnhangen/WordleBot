@@ -3,7 +3,6 @@
 
 from src.wordleBot import run_app
 
-
 def main():
     run_app()
 

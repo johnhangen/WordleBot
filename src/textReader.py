@@ -6,14 +6,6 @@ import logging
 from typing import Generator
 
 
-def wordsToList(lines: str) -> list:
-    words = []
-    for line in lines:
-            words.append(line.strip())
-
-    return words
-
-
 class TextReader:
     """
     A class to read text from a file using a context manager.
@@ -38,3 +30,11 @@ class TextReader:
         except Exception as e:
             logging.error(f"Error reading file {self.path}: {e}")
             yield ''
+
+    @staticmethod
+    def wordsToList(lines: str) -> list:
+        words = []
+        for line in lines:
+                words.append(line.strip())
+
+        return words

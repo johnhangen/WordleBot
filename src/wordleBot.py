@@ -1,10 +1,26 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 import tkinter as tk
-from tkinter import messagebox
 from src.wordlePos import WordlePos
-from src.textReader import TextReader, wordsToList
+from src.textReader import TextReader
+
+
+def run_app():
+    root = tk.Tk()
+    
+    reader = TextReader(path='data/words.txt')
+    with reader.read() as lines:
+        words = reader.wordsToList(lines)
+
+    wordle_solver = WordlePos(words)
+
+    app = WordleSolverGUI(root, wordle_solver)
+    root.mainloop()
+
 
 class WordleSolverGUI:
-    def __init__(self, master, wordle_solver):
+    def __init__(self, master, wordle_solver) -> None:
         self.master = master
         self.wordle_solver = wordle_solver
         master.title("Wordle Solver")
@@ -37,7 +53,7 @@ class WordleSolverGUI:
         self.words_display = tk.Text(master, height=10, width=50)
         self.words_display.grid(row=5, column=0, columnspan=2)
 
-    def solve(self):
+    def solve(self) -> None:
         # Clear the previous results
         self.words_display.delete(1.0, tk.END)
 
@@ -55,15 +71,3 @@ class WordleSolverGUI:
             self.words_display.insert(tk.END, "\n".join(possible_words))
         else:
             self.words_display.insert(tk.END, "No matches found.")
-
-def run_app():
-    root = tk.Tk()
-    
-    reader = TextReader(path='data/words.txt')
-    with reader.read() as lines:
-       words = wordsToList(lines)
-
-    wordle_solver = WordlePos(words)
-
-    app = WordleSolverGUI(root, wordle_solver)
-    root.mainloop()
